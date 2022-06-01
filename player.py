@@ -4,4 +4,4 @@ class Player:
         self.name = name
 
     def choose_gesture(self):
-        print()
+        input("What gesture will you choose this round")
