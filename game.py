@@ -12,6 +12,7 @@ class Game:
        self.rules()
        self.player_headcount()
        self.play_rounds()
+       self.announce_winner()
     
     def display_greeting(self):
         print("Welcome player and/or players to Rock, Paper, Scissors, Lizard, Spock!")
@@ -33,11 +34,14 @@ class Game:
         Best two out of three wins!""")
 
     def player_headcount(self):
-        player_input = int(input("How many Players? 1 or 2 "))
+        player_input = int(input("How many Players? 1 or 2: "))
         if player_input == 1:
             self.player_two = Ai()
         elif player_input == 2:
             self.player_two = Human()
+        else:
+            print("Invalid response")
+            self.player_headcount()
 
     def play_rounds(self):
         while self.player_one.wins < 2 and self.player_two.wins < 2:
@@ -77,3 +81,9 @@ class Game:
                 self.player_one.wins += 1
             else:
                 self.player_two.wins += 1
+
+    def announce_winner(self):
+        if self.player_one.wins == 2:
+            print(f"{self.player_one.name} wins!")
+        else:
+            print("Player two wins!")
